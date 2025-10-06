@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Exit if any command fails
-set -o errexit
+set -o errexit  # Exit on error
 
-# Install PHP (Render environment is Debian-based)
-apt-get update && apt-get install -y php
+echo "🔧 Updating system packages..."
+apt-get update -y > /dev/null
 
-# Start the Flask app
+echo "📦 Installing PHP..."
+apt-get install -y php-cli > /dev/null
+
+echo "🚀 Starting Flask app..."
 python3 app.py
