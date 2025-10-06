@@ -1,7 +1,7 @@
 # Use a lightweight Python image
 FROM python:3.13-slim
 
-# Install PHP and other dependencies
+# Install PHP CLI
 RUN apt-get update && \
     apt-get install -y php-cli && \
     rm -rf /var/lib/apt/lists/*
@@ -9,14 +9,14 @@ RUN apt-get update && \
 # Set working directory
 WORKDIR /app
 
-# Copy project files
+# Copy all project files
 COPY . /app
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port for Flask
+# Expose Flask port
 EXPOSE 5000
 
-# Run Flask app using Gunicorn
+# Start Flask app using Gunicorn
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
