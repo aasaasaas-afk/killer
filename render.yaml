@@ -1,12 +1,11 @@
 services:
   - type: web
-    name: flask-php-app
-    env: python
+    name: flask-php-service
+    env: docker
+    branch: main
     plan: free
-    buildCommand: |
-      apt-get update && apt-get install -y php-cli
-      pip install -r requirements.txt
-    startCommand: python3 app.py
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: "5000"
